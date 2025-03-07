@@ -299,7 +299,7 @@
         </p>
 
         <!-- Call-to-Action Button -->
-        <a href="#reflection" class="cta-button">
+        <a href="#reflection" class="cta-button" id="reflect-button">
             <span>Reflect with Me</span>
         </a>
 
@@ -386,6 +386,7 @@
 
         let currentPrompt = 0;
         const reflectionText = document.getElementById("reflection-text");
+        const reflectButton = document.getElementById("reflect-button");
 
         // Function to change the prompt
         function changePrompt() {
@@ -393,8 +394,17 @@
             currentPrompt = (currentPrompt + 1) % prompts.length;
         }
 
-        // Change prompt every 10 seconds
-        setInterval(changePrompt, 10000);
+        // Change prompt on button click/tap
+        reflectButton.addEventListener("click", (e) => {
+            e.preventDefault(); // Prevent default link behavior
+            changePrompt();
+        });
+
+        // Ensure touch events work on mobile
+        reflectButton.addEventListener("touchstart", (e) => {
+            e.preventDefault(); // Prevent default touch behavior
+            changePrompt();
+        });
     </script>
 
     <!-- Particle Animation Script -->
