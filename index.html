@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0c0c0c">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DunyaWayfarer</title>
     
     <!-- Google Font -->
@@ -197,6 +197,7 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s ease, color 0.3s ease;
+            z-index: 1000; /* Ensure it's above other elements */
         }
 
         .theme-toggle:hover {
@@ -330,6 +331,12 @@
             } else {
                 icon.classList.replace("fa-sun", "fa-moon");
             }
+        });
+
+        // Ensure touch events work on mobile
+        themeToggle.addEventListener("touchstart", (e) => {
+            e.preventDefault(); // Prevent default touch behavior
+            themeToggle.click(); // Trigger the click event
         });
     </script>
 
