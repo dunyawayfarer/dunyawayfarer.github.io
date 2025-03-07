@@ -3,39 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0c0c0c">
-    <title>Dunya Wayfarer</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/script.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <title>DunyaWayfarer</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Reset Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        /* Cosmic Theme */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: black;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Particle Background */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(1.1);
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        /* Profile Image */
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+            transform: translateY(-20px);
+            animation: slideIn 1.2s ease-out forwards 0.5s;
+        }
+
+        /* Social Icons */
+        .social {
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards 1s;
+        }
+
+        .social a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 50%;
+            transition: 0.3s ease;
+        }
+
+        .social a:hover {
+            background: white;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        /* Hadith Section */
+        .hadith {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textSlideIn 1.5s ease-out forwards 1.2s;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(1.1); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes textSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
-    <!-- Starry Night Animation -->
-    <div id="particles-js"></div>
+    <!-- Particle Background -->
+    <canvas id="particles"></canvas>
 
-    <!-- Profile Image -->
-    <div class="profile-container">
-        <img src="images/profile.png" alt="DunyaWayfarer" class="profile">
+    <div class="container">
+        <!-- Profile Picture -->
+        <img src="profile.jpg" alt="Profile" class="profile-img">
+
+        <!-- Social Icons -->
+        <div class="social">
+            <a href="https://instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/yourusername" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+
+        <!-- Hadith -->
+        <p class="hadith">
+            "The Prophet ﷺ said: <br>
+            <strong>‘Be in this world as if you were a stranger or a wayfarer.’</strong> <br>
+            (Reported by Al-Bukhari, 6416)
+        </p>
     </div>
 
-    <!-- Bio Text -->
-    <p class="bio">The Prophet ﷺ said: <br> <em>"Be in this world as if you were a stranger or a wayfarer."</em> <br> (Al-Bukhari, 6416)</p>
-
-    <!-- Social Media Icons -->
-    <div class="social-icons">
-        <a href="https://instagram.com/dunyawayfarer" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="https://t.me/dunyawayfarer" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-    </div>
-
-    <!-- Footer -->
-    <footer>&copy; 2025 DunyaWayfarer</footer>
-
-    <!-- Particle JS Initialization -->
+    <!-- Particle Animation Script -->
     <script>
-        particlesJS.load('particles-js', 'js/particles.json', function() {
-            console.log("Particles.js loaded successfully!");
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Particle settings
+        let particlesArray = [];
+        const numParticles = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = (Math.random() - 0.5) * 1.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = "white";
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            for (let i = 0; i < numParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let particle of particlesArray) {
+                particle.update();
+                particle.draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        // Adjust canvas size on window resize
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
         });
     </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DunyaWayfarer</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Reset Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        /* Cosmic Theme */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: black;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Particle Background */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Main Content */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(1.1);
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        /* Profile Image */
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+            transform: translateY(-20px);
+            animation: slideIn 1.2s ease-out forwards 0.5s;
+        }
+
+        /* Social Icons */
+        .social {
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards 1s;
+        }
+
+        .social a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 50%;
+            transition: 0.3s ease;
+        }
+
+        .social a:hover {
+            background: white;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        /* Hadith Section */
+        .hadith {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-top: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textSlideIn 1.5s ease-out forwards 1.2s;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(1.1); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes textSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+        <!-- Profile Picture -->
+        <img src="profile.jpg" alt="Profile" class="profile-img">
+
+        <!-- Social Icons -->
+        <div class="social">
+            <a href="https://instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/yourusername" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+
+        <!-- Hadith -->
+        <p class="hadith">
+            "The Prophet ﷺ said: <br>
+            <strong>‘Be in this world as if you were a stranger or a wayfarer.’</strong> <br>
+            (Reported by Al-Bukhari, 6416)
+        </p>
+    </div>
+
+    <!-- Particle Animation Script -->
+    <script>
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Particle settings
+        let particlesArray = [];
+        const numParticles = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = (Math.random() - 0.5) * 1.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = "white";
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            for (let i = 0; i < numParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let particle of particlesArray) {
+                particle.update();
+                particle.draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        // Adjust canvas size on window resize
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+    </script>
+
 </body>
 </html>
