@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DunyaWayfarer</title>
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons (For Social Links) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
     <style>
-        /* Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
         /* Reset Styles */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-        /* Cosmic Background */
+        /* Dark Cosmic Theme */
         body {
             font-family: 'Poppins', sans-serif;
             background: black;
@@ -38,29 +42,33 @@
             align-items: center;
             height: 100vh;
             padding: 20px;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         /* Profile Image */
         .profile-img {
-            width: 180px;
-            height: 180px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             border: 3px solid white;
             object-fit: cover;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
+            transition: transform 0.3s ease-in-out;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
         }
 
         /* Social Icons */
         .social {
-            margin: 15px 0;
+            margin: 20px 0;
         }
 
         .social a {
             display: inline-block;
             margin: 10px;
-            padding: 15px;
+            padding: 12px;
             font-size: 1.8rem;
             color: white;
             text-decoration: none;
@@ -72,6 +80,7 @@
         .social a:hover {
             background: white;
             color: black;
+            transform: scale(1.1);
         }
 
         /* Hadith Section */
@@ -84,7 +93,7 @@
             line-height: 1.5;
         }
 
-        /* Keyframe Animation */
+        /* Smooth Fade-in Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -92,7 +101,7 @@
     </style>
 </head>
 <body>
-    <!-- Cosmic Particles Background -->
+    <!-- Cosmic Stars Background -->
     <canvas id="particles"></canvas>
 
     <div class="container">
@@ -101,8 +110,15 @@
 
         <!-- Social Icons -->
         <div class="social">
-            <a href="https://instagram.com/yourusername" target="_blank">📷</a>
-            <a href="https://t.me/yourusername" target="_blank">✈️</a>
+            <a href="https://instagram.com/yourusername" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://t.me/yourusername" target="_blank">
+                <i class="fab fa-telegram-plane"></i>
+            </a>
+            <a href="https://github.com/yourusername" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
         </div>
 
         <!-- Hadith -->
@@ -113,7 +129,7 @@
         </p>
     </div>
 
-    <!-- Particle Effect Script -->
+    <!-- Particle Background Script -->
     <script>
         const canvas = document.getElementById("particles");
         const ctx = canvas.getContext("2d");
@@ -123,13 +139,13 @@
         let stars = [];
 
         function createStars() {
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 80; i++) {
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
                     radius: Math.random() * 2,
-                    speedX: (Math.random() - 0.5) * 0.5,
-                    speedY: (Math.random() - 0.5) * 0.5
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    speedY: (Math.random() - 0.5) * 0.3
                 });
             }
         }
