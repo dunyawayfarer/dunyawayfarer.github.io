@@ -154,63 +154,36 @@
         /* Call-to-Action Button */
         .cta-button {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: white;
-            background-color: #00bcd4;
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00bcd4;
+            background: transparent;
+            border: 2px solid #00bcd4;
             border-radius: 5px;
             text-decoration: none;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s ease;
         }
-/* Call-to-Action Button */
-.cta-button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #00bcd4;
-    background: transparent;
-    border: 2px solid #00bcd4;
-    border-radius: 5px;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    transition: color 0.4s ease;
-}
 
-.cta-button:hover {
-    color: white;
-    background: #00bcd4;
-}
-
-/* Reflection Section */
-#reflection {
-    margin-top: 20px;
-    font-style: italic;
-    opacity: 0;
-    animation: fadeIn 2s ease forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-/* Add a subtle animation for extra flair */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.cta-button {
-    animation: pulse 2s infinite;
-}
         .cta-button:hover {
-            background-color: #0097a7;
-            transform: scale(1.05);
+            color: white;
+            background: #00bcd4;
+        }
+
+        /* Reflection Section */
+        #reflection {
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Footer */
@@ -241,7 +214,7 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background-color 0.3s ease, color 0.3s ease;
-            z-index: 1000; /* Ensure it's above other elements */
+            z-index: 1000;
         }
 
         .theme-toggle:hover {
@@ -309,7 +282,8 @@
 
         <!-- Name with Animation -->
         <h1>DunyaWayfarer</h1>
-        <h2>I'm Dunya Wayfarer, a seeker of knowledge and a wayfarer in this dunya. Passionate about Islam, Aqeedah, and philosophy, always learning, always questioning.</h2>
+        <h2>I'm Dunya Wayfarer, a seeker of knowledge and a wayfarer in this dunya.</h2>
+        <h2>Passionate about Islam, Aqeedah, and philosophy, always learning, always questioning.</h2>
 
         <!-- Social Icons in One Line -->
         <div class="social">
@@ -323,16 +297,17 @@
             <strong>‘Be in this world as if you were a stranger or a wayfarer.’</strong> <br>
             (Reported by Al-Bukhari, 6416)
         </p>
-      
-        <!-- Call-to-Action Button -->
-<a href="#reflection" class="cta-button">
-    <span>Reflect with Me</span>
-</a>
 
-<!-- Reflection Section -->
-<div id="reflection" style="margin-top: 20px; font-style: italic; opacity: 0; animation: fadeIn 2s ease forwards;">
-    <p id="reflection-text">"What is the purpose of your existence?"</p>
-</div>
+        <!-- Call-to-Action Button -->
+        <a href="#reflection" class="cta-button">
+            <span>Reflect with Me</span>
+        </a>
+
+        <!-- Reflection Section -->
+        <div id="reflection" style="margin-top: 20px; font-style: italic; opacity: 0; animation: fadeIn 2s ease forwards;">
+            <p id="reflection-text">"What is the purpose of your existence?"</p>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -389,38 +364,39 @@
         });
     </script>
 
-        // Array of deep, philosophical prompts
-const prompts = [
-    "What is the purpose of your existence?",
-    "If today were your last day, what would you regret not doing?",
-    "What legacy will you leave behind when you're gone?",
-    "Is death the end, or the beginning of something greater?",
-    "What does it mean to truly live, not just exist?",
-    "If you could speak to your future self, what would you ask?",
-    "What is the weight of a soul, and how do you measure it?",
-    "Is suffering a necessary part of growth, or a flaw in the design of life?",
-    "What would you do if you knew you couldn't fail?",
-    "What is the meaning of a life that must end?",
-    "If you could erase one memory, would you? What would you lose?",
-    "What is the value of a moment in the face of eternity?",
-    "Is it better to have loved and lost, or never to have loved at all?",
-    "What is the price of immortality, and would you pay it?",
-    "If you could ask the universe one question, what would it be?"
-];
+    <!-- Reflection Prompts Script -->
+    <script>
+        const prompts = [
+            "What is the purpose of your existence?",
+            "If today were your last day, what would you regret not doing?",
+            "What legacy will you leave behind when you're gone?",
+            "Is death the end, or the beginning of something greater?",
+            "What does it mean to truly live, not just exist?",
+            "If you could speak to your future self, what would you ask?",
+            "What is the weight of a soul, and how do you measure it?",
+            "Is suffering a necessary part of growth, or a flaw in the design of life?",
+            "What would you do if you knew you couldn't fail?",
+            "What is the meaning of a life that must end?",
+            "If you could erase one memory, would you? What would you lose?",
+            "What is the value of a moment in the face of eternity?",
+            "Is it better to have loved and lost, or never to have loved at all?",
+            "What is the price of immortality, and would you pay it?",
+            "If you could ask the universe one question, what would it be?"
+        ];
 
-let currentPrompt = 0;
-const reflectionText = document.getElementById("reflection-text");
+        let currentPrompt = 0;
+        const reflectionText = document.getElementById("reflection-text");
 
-// Function to change the prompt
-function changePrompt() {
-    reflectionText.textContent = `"${prompts[currentPrompt]}"`;
-    currentPrompt = (currentPrompt + 1) % prompts.length;
-}
+        // Function to change the prompt
+        function changePrompt() {
+            reflectionText.textContent = `"${prompts[currentPrompt]}"`;
+            currentPrompt = (currentPrompt + 1) % prompts.length;
+        }
 
-// Change prompt every 10 seconds
-setInterval(changePrompt, 10000);
+        // Change prompt every 10 seconds
+        setInterval(changePrompt, 10000);
+    </script>
 
-        
     <!-- Particle Animation Script -->
     <script>
         const canvas = document.getElementById("particles");
@@ -430,26 +406,28 @@ setInterval(changePrompt, 10000);
         canvas.height = window.innerHeight;
 
         let particlesArray = [];
-        const numParticles = 80;
+        const numParticles = 50; // Reduced for performance
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.5;
+                this.z = Math.random() * 4; // Depth simulation
+                this.size = Math.random() * 2; // Reduced size
                 this.speedX = (Math.random() - 0.5) * 1.5;
                 this.speedY = (Math.random() - 0.5) * 1.5;
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+                this.x += this.speedX * this.z;
+                this.y += this.speedY * this.z;
                 if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
                 if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = "white";
+                ctx.fillStyle = getComputedStyle(document.body)
+                    .getPropertyValue('--text-color');
                 ctx.fill();
             }
         }
