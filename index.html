@@ -8,9 +8,6 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- FontAwesome Icons -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
     <style>
         /* Reset Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -60,7 +57,7 @@
             animation: slideIn 1.2s ease-out forwards 0.5s;
         }
 
-        /* Social Icons */
+        /* Social Icons with Logos */
         .social {
             margin: 20px 0;
             opacity: 0;
@@ -71,18 +68,22 @@
             display: inline-block;
             margin: 10px;
             padding: 12px;
-            font-size: 1.8rem;
-            color: white;
-            text-decoration: none;
-            border: 2px solid white;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            background: white;
             transition: 0.3s ease;
         }
 
+        .social a img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
         .social a:hover {
-            background: white;
-            color: black;
             transform: scale(1.1);
+            box-shadow: 0 0 15px white;
         }
 
         /* Hadith Section */
@@ -122,11 +123,17 @@
         <!-- Profile Picture -->
         <img src="profile.jpg" alt="Profile" class="profile-img">
 
-        <!-- Social Icons -->
+        <!-- Social Icons with Logos -->
         <div class="social">
-            <a href="https://instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://t.me/yourusername" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://instagram.com/yourusername" target="_blank">
+                <img src="instagram-logo.png" alt="Instagram">
+            </a>
+            <a href="https://t.me/yourusername" target="_blank">
+                <img src="telegram-logo.png" alt="Telegram">
+            </a>
+            <a href="https://github.com/yourusername" target="_blank">
+                <img src="github-logo.png" alt="GitHub">
+            </a>
         </div>
 
         <!-- Hadith -->
@@ -148,13 +155,13 @@
 
         // Particle settings
         let particlesArray = [];
-        const numParticles = 100;
+        const numParticles = 80;
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3;
+                this.size = Math.random() * 2.5;
                 this.speedX = (Math.random() - 0.5) * 1.5;
                 this.speedY = (Math.random() - 0.5) * 1.5;
             }
