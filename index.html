@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/animation.css">
     <link rel="shortcut icon" href="images/favicon.ico">
 
-    <!-- jQuery -->
+     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <style>
@@ -27,7 +27,6 @@
             --bg-color: #0c0c0c;
             --text-color: white;
             --primary-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            --secondary-shadow: 0 0 15px white;
             --gradient-bg: linear-gradient(135deg, #1a1a1a, #0c0c0c);
         }
 
@@ -41,6 +40,41 @@
             color: var(--text-color);
             text-align: center;
             overflow: hidden;
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+            border: 5px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Particle Background */
@@ -62,8 +96,7 @@
             height: 100vh;
             padding: 20px;
             opacity: 0;
-            transform: scale(1.1);
-            animation: fadeIn 1.5s ease-out forwards;
+            animation: slideIn 1.5s ease-out forwards;
         }
 
         /* Profile Image */
@@ -75,18 +108,14 @@
             object-fit: cover;
             box-shadow: var(--primary-shadow);
             margin-bottom: 20px;
-            transform: translateY(-20px);
-            animation: slideIn 1.2s ease-out forwards 0.5s;
         }
 
-        /* Social Icons (One Line) */
+        /* Social Icons in One Line */
         .social {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-top: 20px;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-out forwards 1s;
         }
 
         .social a {
@@ -105,11 +134,9 @@
             font-size: 1.2rem;
             max-width: 700px;
             margin-top: 15px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: textSlideIn 1.5s ease-out forwards 1.2s;
             font-style: italic;
             line-height: 1.5;
+            animation: textSlideIn 1.5s ease-out forwards;
         }
 
         /* Footer */
@@ -117,22 +144,9 @@
             margin-top: 40px;
             font-size: 0.9rem;
             opacity: 0.7;
-            animation: bounceInUp 1.5s ease-out;
-        }
-        
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .profile-img { width: 120px; height: 120px; }
-            .hadith { font-size: 1rem; }
-            .social a { font-size: 20px; }
         }
 
         /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(1.1); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -142,9 +156,21 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .profile-img { width: 120px; height: 120px; }
+            .hadith { font-size: 1rem; }
+            .social a { font-size: 20px; }
+        }
     </style>
 </head>
 <body>
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
     <!-- Particle Background -->
     <canvas id="particles"></canvas>
 
@@ -153,10 +179,11 @@
         <img src="profile.jpg" alt="Profile" class="profile-img">
 
         <!-- Name with Animation -->
-        <h1 class="animated fadeInRight">DunyaWayfarer</h1>
+        <h1>DunyaWayfarer</h1>
+        <h2>Seekers of Truth</h2>
 
-        <!-- Social Icons (One Line) -->
-        <div class="social animated bounceInLeft">
+        <!-- Social Icons in One Line -->
+        <div class="social">
             <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
             <a href="https://t.me/yourusername" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
             <a href="https://instagram.com/yourusername" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -178,6 +205,14 @@
     <!-- Auto-update year with JavaScript -->
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Loading Script -->
+    <script>
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader");
+            loader.classList.add("hidden");
+        });
     </script>
 
     <!-- Particle Animation Script -->
@@ -231,6 +266,12 @@
 
         init();
         animate();
+
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
     </script>
 </body>
 </html>
