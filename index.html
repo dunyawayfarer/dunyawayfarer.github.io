@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DunyaWayfarer</title>
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* Reset & General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: black;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Cosmic Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/1600x900/?galaxy,stars,universe') no-repeat center center/cover;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* Animated Stars */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/4/4b/StarfieldSimulation.gif');
+            background-size: cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        /* Content Container */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* Animated Heading */
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 3s ease-in forwards;
+        }
+
+        /* Social Buttons */
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 30px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .buttons a:hover {
+            background: white;
+            color: black;
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div> <!-- Moving Stars Background -->
+
+    <div class="container">
+        <h1>DunyaWayfarer</h1>
+        <p class="tagline">Seeking Truth in a World of Dunya</p>
+
+        <div class="buttons">
+            <a href="https://instagram.com/DunyaWayfarer" target="_blank">📷 Instagram</a>
+            <a href="https://t.me/DunyaWayfarer" target="_blank">📢 Telegram</a>
+        </div>
+    </div>
+
+</body>
+</html>
