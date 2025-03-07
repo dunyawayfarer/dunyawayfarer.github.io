@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DunyaWayfarer</title>
     <style>
-        /* Google Font */
+        /* Import Google Font */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         /* Reset & General Styles */
@@ -23,31 +23,17 @@
             overflow: hidden;
         }
 
-        /* Cosmic Background */
-        body::before {
-            content: "";
+        /* Particle Background */
+        canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://source.unsplash.com/1600x900/?galaxy,stars,universe') no-repeat center center/cover;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        /* Animated Stars */
-        .stars {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/4/4b/StarfieldSimulation.gif');
-            background-size: cover;
-            opacity: 0.3;
             z-index: -1;
         }
 
-        /* Content Container */
+        /* Main Container */
         .container {
             display: flex;
             flex-direction: column;
@@ -62,7 +48,6 @@
             font-size: 3rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
             opacity: 0;
             animation: fadeIn 2s ease-in forwards;
         }
@@ -74,27 +59,39 @@
             animation: fadeIn 3s ease-in forwards;
         }
 
-        /* Social Buttons */
-        .buttons {
+        /* Social Icons */
+        .social {
             margin-top: 20px;
         }
 
-        .buttons a {
+        .social a {
             display: inline-block;
             margin: 10px;
-            padding: 12px 24px;
-            font-size: 1rem;
-            font-weight: 600;
+            padding: 12px;
+            font-size: 1.5rem;
             color: white;
             text-decoration: none;
             border: 2px solid white;
-            border-radius: 30px;
+            border-radius: 50%;
             transition: all 0.3s ease-in-out;
         }
 
-        .buttons a:hover {
+        .social a:hover {
             background: white;
             color: black;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .footer a {
+            color: #ff4757;
+            text-decoration: none;
+            font-weight: 600;
         }
 
         /* Fade-in Animation */
@@ -102,22 +99,70 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
     </style>
 </head>
 <body>
 
-    <div class="stars"></div> <!-- Moving Stars Background -->
+    <!-- Particle Background -->
+    <canvas id="stars"></canvas>
 
     <div class="container">
         <h1>DunyaWayfarer</h1>
         <p class="tagline">Seeking Truth in a World of Dunya</p>
 
-        <div class="buttons">
-            <a href="https://instagram.com/DunyaWayfarer" target="_blank">📷 Instagram</a>
-            <a href="https://t.me/DunyaWayfarer" target="_blank">📢 Telegram</a>
+        <div class="social">
+            <a href="https://instagram.com/DunyaWayfarer" target="_blank">📷</a>
+            <a href="https://t.me/DunyaWayfarer" target="_blank">📢</a>
         </div>
+
+        <p class="footer">Made with ❤️ by <a href="#">Yasir</a></p>
     </div>
+
+    <script>
+        // Starry Background Animation
+        const canvas = document.getElementById("stars");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const stars = [];
+
+        for (let i = 0; i < 100; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2,
+                speedX: (Math.random() - 0.5) * 0.5,
+                speedY: (Math.random() - 0.5) * 0.5
+            });
+        }
+
+        function animateStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "white";
+
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fill();
+                star.x += star.speedX;
+                star.y += star.speedY;
+
+                if (star.x < 0 || star.x > canvas.width) star.speedX *= -1;
+                if (star.y < 0 || star.y > canvas.height) star.speedY *= -1;
+            });
+
+            requestAnimationFrame(animateStars);
+        }
+
+        animateStars();
+
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 
 </body>
 </html>
