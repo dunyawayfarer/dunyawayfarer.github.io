@@ -163,7 +163,67 @@
             text-decoration: none;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
+        /* Call-to-Action Button */
+.cta-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #00bcd4, #0097a7);
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
 
+.cta-button span {
+    position: relative;
+    z-index: 2;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0097a7, #00bcd4);
+    border-radius: 30px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+}
+
+.cta-button:hover::before {
+    opacity: 1;
+}
+
+.cta-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+}
+
+/* Add a subtle animation for extra flair */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.cta-button {
+    animation: pulse 2s infinite;
+}
         .cta-button:hover {
             background-color: #0097a7;
             transform: scale(1.05);
@@ -279,9 +339,11 @@
             <strong>‘Be in this world as if you were a stranger or a wayfarer.’</strong> <br>
             (Reported by Al-Bukhari, 6416)
         </p>
-
+        
         <!-- Call-to-Action Button -->
-        <a href="https://yourblog.com" class="cta-button">Explore My Blog</a>
+        <a href="https://yourblog.com" class="cta-button">
+        <span>Explore My Blog</span>
+         </a>
     </div>
 
     <!-- Footer -->
