@@ -152,21 +152,43 @@
         }
 
         /* Call-to-Action Button */
-        .cta-button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #00bcd4;
-            background: transparent;
-            border: 2px solid #00bcd4;
-            border-radius: 5px;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
+.cta-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #00bcd4;
+    background: transparent;
+    border: 2px solid #00bcd4;
+    border-radius: 5px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.cta-button:hover {
+    color: white;
+    background: #00bcd4;
+}
+
+/* Button Click Animation */
+.cta-button:active {
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+/* Reflection Section */
+#reflection {
+    margin-top: 20px;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#reflection.visible {
+    opacity: 1;
+}
 
         .cta-button:hover {
             color: white;
@@ -302,16 +324,17 @@
             (Reported by Al-Bukhari, 6416)
         </p>
 
-        <!-- Call-to-Action Button -->
-        <a href="#reflection" class="cta-button" id="reflect-button">
-            <span>Reflect with Me</span>
-        </a>
 
-        <!-- Reflection Section -->
-        <div id="reflection" style="margin-top: 20px; font-style: italic; opacity: 0;">
-            <p id="reflection-text"></p> <!-- Empty by default -->
-        </div>
-    </div>
+        <!-- Call-to-Action Button -->
+<a href="#reflection" class="cta-button" id="reflect-button">
+    <span>Reflect with Me</span>
+</a>
+
+<!-- Reflection Section -->
+<div id="reflection" style="margin-top: 20px; font-style: italic; opacity: 0;">
+    <p id="reflection-text"></p> <!-- Empty by default -->
+</div>
+        
 
     <!-- Footer -->
     <footer>
@@ -368,49 +391,49 @@
         });
     </script>
 
-    <!-- Reflection Prompts Script -->
-    <script>
-        const prompts = [
-            "What is the purpose of your existence?",
-            "If today were your last day, what would you regret not doing?",
-            "What legacy will you leave behind when you're gone?",
-            "Is death the end, or the beginning of something greater?",
-            "What does it mean to truly live, not just exist?",
-            "If you could speak to your future self, what would you ask?",
-            "What is the weight of a soul, and how do you measure it?",
-            "Is suffering a necessary part of growth, or a flaw in the design of life?",
-            "What would you do if you knew you couldn't fail?",
-            "What is the meaning of a life that must end?",
-            "If you could erase one memory, would you? What would you lose?",
-            "What is the value of a moment in the face of eternity?",
-            "Is it better to have loved and lost, or never to have loved at all?",
-            "What is the price of immortality, and would you pay it?",
-            "If you could ask the universe one question, what would it be?"
-        ];
+// Array of deep, philosophical prompts
+const prompts = [
+    "What is the purpose of your existence?",
+    "If today were your last day, what would you regret not doing?",
+    "What legacy will you leave behind when you're gone?",
+    "Is death the end, or the beginning of something greater?",
+    "What does it mean to truly live, not just exist?",
+    "If you could speak to your future self, what would you ask?",
+    "What is the weight of a soul, and how do you measure it?",
+    "Is suffering a necessary part of growth, or a flaw in the design of life?",
+    "What would you do if you knew you couldn't fail?",
+    "What is the meaning of a life that must end?",
+    "If you could erase one memory, would you? What would you lose?",
+    "What is the value of a moment in the face of eternity?",
+    "Is it better to have loved and lost, or never to have loved at all?",
+    "What is the price of immortality, and would you pay it?",
+    "If you could ask the universe one question, what would it be?"
+];
 
-        let currentPrompt = 0;
-        const reflectionText = document.getElementById("reflection-text");
-        const reflectionSection = document.getElementById("reflection");
-        const reflectButton = document.getElementById("reflect-button");
+let currentPrompt = 0;
+const reflectionText = document.getElementById("reflection-text");
+const reflectionSection = document.getElementById("reflection");
+const reflectButton = document.getElementById("reflect-button");
 
-        // Function to change the prompt
-        function changePrompt() {
-            reflectionText.textContent = `"${prompts[currentPrompt]}"`;
-            reflectionSection.classList.add("visible"); // Show the reflection section
-            currentPrompt = (currentPrompt + 1) % prompts.length;
-        }
+// Function to change the prompt
+function changePrompt() {
+    reflectionText.textContent = `"${prompts[currentPrompt]}"`;
+    reflectionSection.classList.add("visible"); // Show the reflection section
+    currentPrompt = (currentPrompt + 1) % prompts.length;
+}
 
-        // Change prompt on button click/tap
-        reflectButton.addEventListener("click", (e) => {
-            e.preventDefault(); // Prevent default link behavior
-            changePrompt();
-        });
+// Change prompt on button click/tap
+reflectButton.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent default link behavior
+    changePrompt();
+});
 
-        // Ensure touch events work on mobile
-        reflectButton.addEventListener("touchstart", (e) => {
-            e.preventDefault(); // Prevent default touch behavior
-            changePrompt();
-        });
+// Ensure touch events work on mobile
+reflectButton.addEventListener("touchend", (e) => {
+    e.preventDefault(); // Prevent default touch behavior
+    changePrompt();
+});
+        
     </script>
 
     <!-- Particle Animation Script -->
