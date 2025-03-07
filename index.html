@@ -159,19 +159,19 @@
             font-size: 1.1rem;
             font-weight: 600;
             color: white;
-            background: linear-gradient(135deg, #00bcd4, #0097a7);
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
             border: none;
             border-radius: 25px;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
             cursor: pointer;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
-            background: linear-gradient(135deg, #0097a7, #00bcd4);
+            box-shadow: 0 6px 20px rgba(106, 17, 203, 0.5);
+            background: linear-gradient(135deg, #2575fc, #6a11cb);
         }
 
         /* Click/Tap Feedback */
@@ -429,22 +429,23 @@
                                 transition: background-color 0.3s ease;
                             }
                             #change-prompt {
-                                background: #00bcd4;
+                                background: linear-gradient(135deg, #6a11cb, #2575fc);
                                 color: white;
                             }
                             #back-button {
-                                background: #ff4757;
+                                background: linear-gradient(135deg, #ff4757, #ff6b81);
                                 color: white;
                             }
                             button:hover {
                                 opacity: 0.9;
+                                transform: translateY(-2px);
                             }
                         </style>
                     </head>
                     <body>
                         <p id="prompt-text">"${randomPrompt}"</p>
                         <button id="change-prompt">Change Prompt</button>
-                        <button id="back-button">Back</button>
+                        <button id="back-button">Go Back</button>
                         <script>
                             const prompts = ${JSON.stringify(prompts)};
                             const promptText = document.getElementById("prompt-text");
