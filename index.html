@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DunyaWayfarer</title>
     <style>
-        /* Import Google Font */
+        /* Google Font */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-        /* Reset & General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Reset Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -43,25 +40,20 @@
             padding: 20px;
         }
 
-        /* Animated Heading */
-        h1 {
-            font-size: 3rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards;
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            opacity: 0;
-            animation: fadeIn 3s ease-in forwards;
+        /* Profile Image */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
 
         /* Social Icons */
         .social {
-            margin-top: 20px;
+            margin: 15px 0;
         }
 
         .social a {
@@ -73,12 +65,21 @@
             text-decoration: none;
             border: 2px solid white;
             border-radius: 50%;
-            transition: all 0.3s ease-in-out;
+            transition: 0.3s;
         }
 
         .social a:hover {
             background: white;
             color: black;
+        }
+
+        /* Bio */
+        .bio {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-top: 15px;
+            opacity: 0.8;
+            animation: fadeIn 3s ease-in-out;
         }
 
         /* Footer */
@@ -94,7 +95,7 @@
             font-weight: 600;
         }
 
-        /* Fade-in Animation */
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -103,18 +104,23 @@
 </head>
 <body>
 
-    <!-- Particle Background -->
+    <!-- Starry Background -->
     <canvas id="stars"></canvas>
 
     <div class="container">
-        <h1>DunyaWayfarer</h1>
-        <p class="tagline">Seeking Truth in a World of Dunya</p>
-
+        <!-- Profile Image -->
+        <img src="your-image.jpg" alt="Profile Image" class="profile-img">
+        
+        <!-- Social Icons -->
         <div class="social">
             <a href="https://instagram.com/DunyaWayfarer" target="_blank">📷</a>
             <a href="https://t.me/DunyaWayfarer" target="_blank">📢</a>
         </div>
 
+        <!-- Bio -->
+        <p class="bio">I’m Yasir, a seeker of knowledge, passionate about Islam & philosophy. Follow me on my journey through Dunya.</p>
+
+        <!-- Footer -->
         <p class="footer">Made with ❤️ by <a href="#">Yasir</a></p>
     </div>
 
