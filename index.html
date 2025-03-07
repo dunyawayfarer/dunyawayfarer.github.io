@@ -411,9 +411,9 @@
 
         // Function to change the prompt
         function changePrompt() {
-            reflectionText.textContent = `"${prompts[currentPrompt]}"`;
-            reflectionSection.classList.add("visible"); // Show the reflection section
-            currentPrompt = (currentPrompt + 1) % prompts.length;
+            reflectionText.textContent = `"${prompts[currentPrompt]}"`; // Update the text
+            reflectionSection.classList.add("visible"); // Make the section visible
+            currentPrompt = (currentPrompt + 1) % prompts.length; // Move to the next prompt
         }
 
         // Function to trigger confetti
@@ -432,14 +432,14 @@
         // Change prompt on button click/tap
         reflectButton.addEventListener("click", (e) => {
             e.preventDefault(); // Prevent default link behavior
-            changePrompt();
+            changePrompt(); // Update the reflection text
             triggerConfetti(); // Trigger confetti effect
         });
 
         // Ensure touch events work on mobile
         reflectButton.addEventListener("touchend", (e) => {
             e.preventDefault(); // Prevent default touch behavior
-            changePrompt();
+            changePrompt(); // Update the reflection text
             triggerConfetti(); // Trigger confetti effect
         });
     </script>
