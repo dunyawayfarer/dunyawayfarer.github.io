@@ -26,13 +26,17 @@
         :root {
             --bg-color: #131835;
             --text-color: white;
-            --primary-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            --primary-gradient: linear-gradient(135deg, #2a2a72, #009ffd);
+            --secondary-gradient: linear-gradient(135deg, #430c5c, #9932cc);
+            --cosmic-shadow: 0 4px 15px rgba(42, 42, 114, 0.4);
         }
 
-        /* Light Theme Variables */
         .light-theme {
             --bg-color: #f0f0f0;
             --text-color: #131835;
+            --primary-gradient: linear-gradient(135deg, #6a11cb, #2575fc);
+            --secondary-gradient: linear-gradient(135deg, #ff6b6b, #ff4757);
+            --cosmic-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
         }
 
         /* Reset Styles */
@@ -105,6 +109,11 @@
             animation: slideIn 1.5s ease-out forwards;
         }
 
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Profile Image */
         .profile-img {
             width: 160px;
@@ -151,6 +160,11 @@
             animation: textSlideIn 1.5s ease-out forwards;
         }
 
+        @keyframes textSlideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Gradient Button with Hover Effects */
         .cta-button {
             display: inline-block;
@@ -159,22 +173,21 @@
             font-size: 1.1rem;
             font-weight: 600;
             color: white;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: var(--primary-gradient);
             border: none;
             border-radius: 25px;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+            box-shadow: var(--cosmic-shadow);
             cursor: pointer;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(106, 17, 203, 0.5);
-            background: linear-gradient(135deg, #2575fc, #6a11cb);
+            box-shadow: 0 6px 20px rgba(42, 42, 114, 0.5);
+            background: linear-gradient(135deg, #009ffd, #2a2a72);
         }
 
-        /* Click/Tap Feedback */
         .cta-button:active {
             transform: scale(0.95);
         }
@@ -225,17 +238,6 @@
         .theme-toggle:hover {
             background-color: #00bcd4;
             color: white;
-        }
-
-        /* Animations */
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes textSlideIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Mobile Responsiveness */
