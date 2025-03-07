@@ -29,6 +29,7 @@
             --primary-gradient: linear-gradient(135deg, #2a2a72, #009ffd);
             --secondary-gradient: linear-gradient(135deg, #430c5c, #9932cc);
             --cosmic-shadow: 0 4px 15px rgba(42, 42, 114, 0.4);
+            --reflect-button-color: #6a11cb; /* New color for Reflect with Me button */
         }
 
         .light-theme {
@@ -37,6 +38,7 @@
             --primary-gradient: linear-gradient(135deg, #6a11cb, #2575fc);
             --secondary-gradient: linear-gradient(135deg, #ff6b6b, #ff4757);
             --cosmic-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
+            --reflect-button-color: #2575fc; /* Light theme color for Reflect with Me button */
         }
 
         /* Reset Styles */
@@ -173,7 +175,7 @@
             font-size: 1.1rem;
             font-weight: 600;
             color: white;
-            background: var(--primary-gradient);
+            background: var(--reflect-button-color); /* Updated color */
             border: none;
             border-radius: 25px;
             text-decoration: none;
@@ -185,7 +187,7 @@
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(42, 42, 114, 0.5);
-            background: linear-gradient(135deg, #009ffd, #2a2a72);
+            background: linear-gradient(135deg, #009ffd, #2a2a72); /* Gradient on hover */
         }
 
         .cta-button:active {
@@ -375,7 +377,7 @@
     <div class="modal" id="reflection-modal">
         <div class="modal-content">
             <p id="prompt-text"></p>
-            <button id="change-prompt">Change Prompt</button>
+            <button id="change-prompt">Reflect Again</button>
             <button id="close-modal">Go Back</button>
         </div>
     </div>
