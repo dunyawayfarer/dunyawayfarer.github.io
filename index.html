@@ -165,7 +165,7 @@
             text-decoration: none;
             position: relative;
             overflow: hidden;
-            transition: color 0.4s ease;
+            transition: all 0.4s ease;
         }
 
         .cta-button:hover {
@@ -173,17 +173,21 @@
             background: #00bcd4;
         }
 
+        /* Button Click Animation */
+        .cta-button:active {
+            transform: scale(0.95);
+        }
+
         /* Reflection Section */
         #reflection {
             margin-top: 20px;
             font-style: italic;
             opacity: 0;
-            animation: fadeIn 2s ease forwards;
+            transition: opacity 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        #reflection.visible {
+            opacity: 1;
         }
 
         /* Footer */
@@ -304,8 +308,8 @@
         </a>
 
         <!-- Reflection Section -->
-        <div id="reflection" style="margin-top: 20px; font-style: italic; opacity: 0; animation: fadeIn 2s ease forwards;">
-            <p id="reflection-text">"What is the purpose of your existence?"</p>
+        <div id="reflection" style="margin-top: 20px; font-style: italic; opacity: 0;">
+            <p id="reflection-text"></p> <!-- Empty by default -->
         </div>
     </div>
 
@@ -386,11 +390,13 @@
 
         let currentPrompt = 0;
         const reflectionText = document.getElementById("reflection-text");
+        const reflectionSection = document.getElementById("reflection");
         const reflectButton = document.getElementById("reflect-button");
 
         // Function to change the prompt
         function changePrompt() {
             reflectionText.textContent = `"${prompts[currentPrompt]}"`;
+            reflectionSection.classList.add("visible"); // Show the reflection section
             currentPrompt = (currentPrompt + 1) % prompts.length;
         }
 
