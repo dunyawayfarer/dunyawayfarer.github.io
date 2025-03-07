@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +11,7 @@
         /* Reset Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* Cosmic Background */
         body {
             font-family: 'Poppins', sans-serif;
             background: black;
@@ -42,11 +42,12 @@
 
         /* Profile Image */
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             border: 3px solid white;
             object-fit: cover;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
             animation: fadeIn 2s ease-in-out;
         }
@@ -59,13 +60,13 @@
         .social a {
             display: inline-block;
             margin: 10px;
-            padding: 12px;
-            font-size: 1.5rem;
+            padding: 15px;
+            font-size: 1.8rem;
             color: white;
             text-decoration: none;
             border: 2px solid white;
             border-radius: 50%;
-            transition: 0.3s;
+            transition: 0.3s ease;
         }
 
         .social a:hover {
@@ -73,102 +74,91 @@
             color: black;
         }
 
-        /* Bio */
-        .bio {
+        /* Hadith Section */
+        .hadith {
             font-size: 1.2rem;
-            max-width: 600px;
+            max-width: 700px;
             margin-top: 15px;
-            opacity: 0.8;
-            animation: fadeIn 3s ease-in-out;
+            opacity: 0.9;
+            font-style: italic;
+            line-height: 1.5;
         }
 
-        /* Footer */
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        .footer a {
-            color: #ff4757;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        /* Animations */
+        /* Keyframe Animation */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-
-    <!-- Starry Background -->
-    <canvas id="stars"></canvas>
+    <!-- Cosmic Particles Background -->
+    <canvas id="particles"></canvas>
 
     <div class="container">
-        <!-- Profile Image -->
-        <img src="your-image.jpg" alt="Profile Image" class="profile-img">
-        
+        <!-- Profile Picture -->
+        <img src="profile.jpg" alt="Profile" class="profile-img">
+
         <!-- Social Icons -->
         <div class="social">
-            <a href="https://instagram.com/DunyaWayfarer" target="_blank">📷</a>
-            <a href="https://t.me/DunyaWayfarer" target="_blank">📢</a>
+            <a href="https://instagram.com/yourusername" target="_blank">📷</a>
+            <a href="https://t.me/yourusername" target="_blank">✈️</a>
         </div>
 
-        <!-- Bio -->
-        <p class="bio">I’m Yasir, a seeker of knowledge, passionate about Islam & philosophy. Follow me on my journey through Dunya.</p>
-
-        <!-- Footer -->
-        <p class="footer">Made with ❤️ by <a href="#">Yasir</a></p>
+        <!-- Hadith -->
+        <p class="hadith">
+            "The Prophet ﷺ said: <br> 
+            <strong>'Be in this world as if you were a stranger or a wayfarer.'</strong> <br> 
+            (Reported by Al-Bukhari, 6416)
+        </p>
     </div>
 
+    <!-- Particle Effect Script -->
     <script>
-        // Starry Background Animation
-        const canvas = document.getElementById("stars");
+        const canvas = document.getElementById("particles");
         const ctx = canvas.getContext("2d");
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        const stars = [];
+        let stars = [];
 
-        for (let i = 0; i < 100; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 2,
-                speedX: (Math.random() - 0.5) * 0.5,
-                speedY: (Math.random() - 0.5) * 0.5
-            });
+        function createStars() {
+            for (let i = 0; i < 100; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5
+                });
+            }
         }
 
-        function animateStars() {
+        function drawStars() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "white";
-
             stars.forEach(star => {
                 ctx.beginPath();
                 ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
                 ctx.fill();
                 star.x += star.speedX;
                 star.y += star.speedY;
-
                 if (star.x < 0 || star.x > canvas.width) star.speedX *= -1;
                 if (star.y < 0 || star.y > canvas.height) star.speedY *= -1;
             });
-
-            requestAnimationFrame(animateStars);
+            requestAnimationFrame(drawStars);
         }
 
-        animateStars();
+        createStars();
+        drawStars();
 
+        // Resize canvas on window resize
         window.addEventListener("resize", () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            stars = [];
+            createStars();
         });
     </script>
-
 </body>
 </html>
