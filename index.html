@@ -204,6 +204,61 @@
             opacity: 1;
         }
 
+        /* Modal Dialog */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--bg-color);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content p {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .modal-content button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content #change-prompt {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+        }
+
+        .modal-content #close-modal {
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+            color: white;
+        }
+
+        .modal-content button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
         /* Footer */
         footer {
             margin-top: 60px;
@@ -316,6 +371,15 @@
         </div>
     </div>
 
+    <!-- Modal Dialog -->
+    <div class="modal" id="reflection-modal">
+        <div class="modal-content">
+            <p id="prompt-text"></p>
+            <button id="change-prompt">Change Prompt</button>
+            <button id="close-modal">Go Back</button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>&copy; <span id="year"></span> DunyaWayfarer 🚀</p>
@@ -392,81 +456,26 @@
         ];
 
         const reflectButton = document.getElementById("reflect-button");
+        const modal = document.getElementById("reflection-modal");
+        const promptText = document.getElementById("prompt-text");
 
-        // Function to open a new window with a random prompt
+        // Function to show the modal with a random prompt
         reflectButton.addEventListener("click", (e) => {
             e.preventDefault(); // Prevent default link behavior
             const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
-            const newWindow = window.open("", "Reflection Prompt", "width=500,height=300");
-            newWindow.document.write(`
-                <html>
-                    <head>
-                        <title>Reflection Prompt</title>
-                        <style>
-                            body {
-                                font-family: 'Raleway', sans-serif;
-                                background: #131835;
-                                color: white;
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                align-items: center;
-                                height: 100vh;
-                                margin: 0;
-                                text-align: center;
-                                padding: 20px;
-                            }
-                            p {
-                                font-size: 1.2rem;
-                                font-style: italic;
-                                margin-bottom: 20px;
-                            }
-                            button {
-                                padding: 10px 20px;
-                                font-size: 1rem;
-                                border: none;
-                                border-radius: 5px;
-                                cursor: pointer;
-                                margin: 5px;
-                                transition: background-color 0.3s ease;
-                            }
-                            #change-prompt {
-                                background: linear-gradient(135deg, #6a11cb, #2575fc);
-                                color: white;
-                            }
-                            #back-button {
-                                background: linear-gradient(135deg, #ff4757, #ff6b81);
-                                color: white;
-                            }
-                            button:hover {
-                                opacity: 0.9;
-                                transform: translateY(-2px);
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <p id="prompt-text">"${randomPrompt}"</p>
-                        <button id="change-prompt">Change Prompt</button>
-                        <button id="back-button">Go Back</button>
-                        <script>
-                            const prompts = ${JSON.stringify(prompts)};
-                            const promptText = document.getElementById("prompt-text");
+            promptText.textContent = `"${randomPrompt}"`;
+            modal.style.display = "flex";
+        });
 
-                            // Change Prompt Button
-                            document.getElementById("change-prompt").addEventListener("click", () => {
-                                const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
-                                promptText.textContent = \`"\${randomPrompt}"\`;
-                            });
+        // Change Prompt Button
+        document.getElementById("change-prompt").addEventListener("click", () => {
+            const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+            promptText.textContent = `"${randomPrompt}"`;
+        });
 
-                            // Back Button
-                            document.getElementById("back-button").addEventListener("click", () => {
-                                window.close();
-                            });
-                        <\/script>
-                    </body>
-                </html>
-            `);
-            newWindow.document.close();
+        // Close Modal Button
+        document.getElementById("close-modal").addEventListener("click", () => {
+            modal.style.display = "none";
         });
     </script>
 
