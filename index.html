@@ -180,51 +180,22 @@
     transition: color 0.4s ease;
 }
 
-.cta-button span {
-    position: relative;
-    z-index: 2;
-}
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #00bcd4;
-    z-index: 1;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-}
-
 .cta-button:hover {
     color: white;
+    background: #00bcd4;
 }
 
-.cta-button:hover::before {
-    transform: scaleX(1);
-}
-
-/* Border Animation */
-.cta-button::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
-    border: 2px solid #00bcd4;
-    border-radius: 5px;
-    z-index: 0;
+/* Reflection Section */
+#reflection {
+    margin-top: 20px;
+    font-style: italic;
     opacity: 0;
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    animation: fadeIn 2s ease forwards;
 }
 
-.cta-button:hover::after {
-    opacity: 1;
-    transform: scale(1.1);
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Add a subtle animation for extra flair */
@@ -352,12 +323,16 @@
             <strong>‘Be in this world as if you were a stranger or a wayfarer.’</strong> <br>
             (Reported by Al-Bukhari, 6416)
         </p>
-        
+      
         <!-- Call-to-Action Button -->
-        <a href="https://yourblog.com" class="cta-button">
-        <span>Explore My Blog</span>
-         </a>
-    </div>
+<a href="#reflection" class="cta-button">
+    <span>Reflect with Me</span>
+</a>
+
+<!-- Reflection Section -->
+<div id="reflection" style="margin-top: 20px; font-style: italic; opacity: 0; animation: fadeIn 2s ease forwards;">
+    <p id="reflection-text">"What is the purpose of your existence?"</p>
+</div>
 
     <!-- Footer -->
     <footer>
@@ -414,6 +389,38 @@
         });
     </script>
 
+        // Array of deep, philosophical prompts
+const prompts = [
+    "What is the purpose of your existence?",
+    "If today were your last day, what would you regret not doing?",
+    "What legacy will you leave behind when you're gone?",
+    "Is death the end, or the beginning of something greater?",
+    "What does it mean to truly live, not just exist?",
+    "If you could speak to your future self, what would you ask?",
+    "What is the weight of a soul, and how do you measure it?",
+    "Is suffering a necessary part of growth, or a flaw in the design of life?",
+    "What would you do if you knew you couldn't fail?",
+    "What is the meaning of a life that must end?",
+    "If you could erase one memory, would you? What would you lose?",
+    "What is the value of a moment in the face of eternity?",
+    "Is it better to have loved and lost, or never to have loved at all?",
+    "What is the price of immortality, and would you pay it?",
+    "If you could ask the universe one question, what would it be?"
+];
+
+let currentPrompt = 0;
+const reflectionText = document.getElementById("reflection-text");
+
+// Function to change the prompt
+function changePrompt() {
+    reflectionText.textContent = `"${prompts[currentPrompt]}"`;
+    currentPrompt = (currentPrompt + 1) % prompts.length;
+}
+
+// Change prompt every 10 seconds
+setInterval(changePrompt, 10000);
+
+        
     <!-- Particle Animation Script -->
     <script>
         const canvas = document.getElementById("particles");
