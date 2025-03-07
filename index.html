@@ -2,48 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#0c0c0c">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DunyaWayfarer 🌍</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DunyaWayfarer</title>
 
-    <!-- External Fonts & Icons -->
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animation.css">
-    <link rel="shortcut icon" href="images/favicon.ico">
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
     <style>
-        /* General Reset */
+        /* Reset Styles */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-        /* Dark Cosmic Theme */
+        /* Cosmic Theme */
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0c0c0c;
+            background: black;
             color: white;
             text-align: center;
             overflow: hidden;
         }
 
         /* Particle Background */
-        #particles-js {
+        canvas {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
         }
 
         /* Main Content */
-        .main-content {
+        .container {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -56,36 +48,23 @@
         }
 
         /* Profile Image */
-        figure img {
-            width: 150px;
-            height: 150px;
+        .profile-img {
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             border: 3px solid white;
             object-fit: cover;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
-            animation: bounceIn 1.5s ease-out;
-        }
-
-        /* Title */
-        h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            animation: fadeInRight 1.5s ease-out;
-        }
-
-        /* Username */
-        h2 {
-            font-size: 1.4rem;
-            font-weight: 400;
-            opacity: 0.8;
-            animation: flipInX 1.5s ease-out;
+            transform: translateY(-20px);
+            animation: slideIn 1.2s ease-out forwards 0.5s;
         }
 
         /* Social Icons */
         .social {
-            margin-top: 20px;
-            animation: bounceInLeft 1.5s ease-out;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards 1s;
         }
 
         .social a {
@@ -118,33 +97,15 @@
             line-height: 1.5;
         }
 
-        /* Footer */
-        footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-            animation: bounceInUp 1.5s ease-out;
-        }
-
-        /* Keyframe Animations */
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(1.1); }
             to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes bounceIn {
+        @keyframes slideIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes flipInX {
-            from { opacity: 0; transform: rotateX(-90deg); }
-            to { opacity: 1; transform: rotateX(0); }
         }
 
         @keyframes textSlideIn {
@@ -153,29 +114,20 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false;">
-
+<body>
     <!-- Particle Background -->
-    <div id="particles-js"></div>
+    <canvas id="particles"></canvas>
 
-    <div class="main-content">
+    <div class="container">
         <!-- Profile Picture -->
-        <figure>
-            <img src="images/profile.png" alt="DunyaWayfarer">
-        </figure>
-
-        <!-- Title -->
-        <h1>🌍 DunyaWayfarer</h1>
-        <h2>@DunyaWayfarer</h2>
+        <img src="profile.jpg" alt="Profile" class="profile-img">
 
         <!-- Social Icons -->
-        <ul class="social">
-            <li><a href="https://instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="https://t.me/yourusername" target="_blank"><i class="fab fa-telegram-plane"></i></a></li>
-            <li><a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://twitter.com/yourusername" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://facebook.com/yourusername" target="_blank"><i class="fab fa-facebook"></i></a></li>
-        </ul>
+        <div class="social">
+            <a href="https://instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/yourusername" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
 
         <!-- Hadith -->
         <p class="hadith">
@@ -183,17 +135,69 @@
             <strong>‘Be in this world as if you were a stranger or a wayfarer.’</strong> <br>
             (Reported by Al-Bukhari, 6416)
         </p>
-
-        <!-- Footer -->
-        <footer>
-            &copy; DunyaWayfarer 🚀 | Designed with ❤️
-        </footer>
     </div>
 
     <!-- Particle Animation Script -->
-    <script src="js/particles.js"></script>
-    <script src="js/security.js"></script>
-    <script src="js/app.js"></script>
+    <script>
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Particle settings
+        let particlesArray = [];
+        const numParticles = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.speedY = (Math.random() - 0.5) * 1.5;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = "white";
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            for (let i = 0; i < numParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let particle of particlesArray) {
+                particle.update();
+                particle.draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+
+        // Adjust canvas size on window resize
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+    </script>
 
 </body>
 </html>
