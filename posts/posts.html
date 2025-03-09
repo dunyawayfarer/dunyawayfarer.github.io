@@ -27,6 +27,12 @@
         }
 
         /* General Styles */
+        html, body {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100%;
+        }
+
         body {
             font-family: 'Raleway', sans-serif;
             background: var(--bg-color);
@@ -257,6 +263,7 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
         }
 
         .back-to-top.show {
@@ -333,34 +340,6 @@
                     <span class="tag">Fiqh</span>
                 </div>
                 <a href="bidah.html" class="read-more">Read More</a>
-            </li>
-            <li>
-                <span class="date">[ 15-03-2025 ]</span>
-                <span class="post-title"><a href="journey_of_faith.html">Journey of Faith</a></span>
-                <p class="excerpt">Reflections on the journey of faith and the challenges faced along the way...</p>
-                <div class="author-info">
-                    <img src="https://via.placeholder.com/40" alt="Author">
-                    <span>By DunyaWayfarer</span>
-                </div>
-                <div class="tags">
-                    <span class="tag">Spirituality</span>
-                    <span class="tag">Personal Growth</span>
-                </div>
-                <a href="journey_of_faith.html" class="read-more">Read More</a>
-            </li>
-            <li>
-                <span class="date">[ 20-03-2025 ]</span>
-                <span class="post-title"><a href="meaning_of_life.html">The Meaning of Life</a></span>
-                <p class="excerpt">Exploring the purpose of life through the lens of Islamic teachings...</p>
-                <div class="author-info">
-                    <img src="https://via.placeholder.com/40" alt="Author">
-                    <span>By DunyaWayfarer</span>
-                </div>
-                <div class="tags">
-                    <span class="tag">Philosophy</span>
-                    <span class="tag">Islam</span>
-                </div>
-                <a href="meaning_of_life.html" class="read-more">Read More</a>
             </li>
         </ul>
 
