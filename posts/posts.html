@@ -5,8 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayfarer's Journal - DunyaWayfarer</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Additional Styles for Posts Page */
+        /* General Styles */
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -16,11 +26,12 @@
         h1 {
             font-size: 2.5rem;
             font-weight: 600;
-            margin-bottom: 20px;
             text-align: center;
+            margin-bottom: 40px;
             color: var(--text-color);
         }
 
+        /* Post List Styles */
         .post-list {
             list-style: none;
             padding: 0;
@@ -28,7 +39,7 @@
         }
 
         .post-list li {
-            margin: 20px 0;
+            margin-bottom: 30px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
@@ -49,7 +60,7 @@
         .post-list .post-title a {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 600;
             transition: color 0.3s ease;
         }
@@ -58,6 +69,13 @@
             color: #00bcd4;
         }
 
+        .post-list .excerpt {
+            font-size: 1rem;
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        /* Light Theme Adjustments */
         .light-theme .post-list li {
             background: rgba(0, 0, 0, 0.05);
         }
@@ -72,7 +90,7 @@
 
         /* Footer Styles */
         footer {
-            margin-top: 40px;
+            margin-top: 60px;
             text-align: center;
             font-size: 0.9rem;
             color: #888;
@@ -97,7 +115,11 @@
             }
 
             .post-list .post-title a {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
+            }
+
+            .post-list .excerpt {
+                font-size: 0.9rem;
             }
         }
     </style>
