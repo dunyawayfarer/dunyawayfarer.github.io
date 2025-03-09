@@ -104,44 +104,6 @@
             color: white;
         }
 
-        /* Hamburger Menu for Mobile */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 4px; /* Smaller gap between lines */
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 20px; /* Smaller width */
-            height: 2px; /* Thinner lines */
-            background: var(--nav-text);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 50px; /* Adjusted top position */
-                right: 20px;
-                background: var(--nav-bg);
-                border-radius: 10px;
-                padding: 10px;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-        }
-
         /* Container Styles */
         .container {
             max-width: 800px;
@@ -374,6 +336,22 @@
         .back-to-top:hover {
             background: #009fb4;
         }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 10px; /* Reduce gap for smaller screens */
+            }
+
+            .nav-link {
+                padding: 6px 12px; /* Smaller padding for mobile */
+                font-size: 0.9rem; /* Smaller font size for mobile */
+            }
+
+            .nav-brand {
+                font-size: 1rem; /* Smaller brand text for mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -386,12 +364,7 @@
     <nav>
         <div class="nav-container">
             <a href="/" class="nav-brand">Dunya<span>Wayfarer</span></a>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="nav-links" id="nav-links">
+            <div class="nav-links">
                 <a href="/" class="nav-link">Home</a>
                 <a href="posts.html" class="nav-link active">Wayfarer's Journal</a>
             </div>
@@ -499,16 +472,6 @@
                 top: 0,
                 behavior: "smooth"
             });
-        });
-    </script>
-
-    <!-- Hamburger Menu Script -->
-    <script>
-        const hamburger = document.getElementById("hamburger");
-        const navLinks = document.getElementById("nav-links");
-
-        hamburger.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
         });
     </script>
 </body>
