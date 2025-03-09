@@ -55,6 +55,15 @@
         .light-theme .blog-content a:hover {
             color: #6a11cb;
         }
+
+        /* Fix for scrolling */
+        .container {
+            min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to the top */
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
