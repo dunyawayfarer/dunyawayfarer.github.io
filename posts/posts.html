@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* CSS Variables for Light and Dark Themes */
+        :root {
+            --bg-color: #0C0D22; /* Dark theme background */
+            --text-color: white; /* Dark theme text */
+            --card-bg: rgba(255, 255, 255, 0.05); /* Dark theme card background */
+            --card-hover: rgba(255, 255, 255, 0.1); /* Dark theme card hover */
+            --accent-color: #00bcd4; /* Accent color */
+            --footer-color: #888; /* Footer text color */
+        }
+
+        .light-theme {
+            --bg-color: #f0f0f0; /* Light theme background */
+            --text-color: #131835; /* Light theme text */
+            --card-bg: rgba(0, 0, 0, 0.05); /* Light theme card background */
+            --card-hover: rgba(0, 0, 0, 0.1); /* Light theme card hover */
+            --accent-color: #2575fc; /* Light theme accent color */
+            --footer-color: #666; /* Light theme footer text color */
+        }
+
         /* General Styles */
         body {
             font-family: 'Raleway', sans-serif;
@@ -15,6 +34,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         .container {
@@ -41,7 +61,7 @@
         .post-list li {
             margin-bottom: 30px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--card-bg);
             border-radius: 10px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -49,11 +69,12 @@
         .post-list li:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: var(--card-hover);
         }
 
         .post-list .date {
             font-size: 0.9rem;
-            color: #888;
+            color: var(--footer-color);
             margin-bottom: 10px;
         }
 
@@ -66,26 +87,13 @@
         }
 
         .post-list .post-title a:hover {
-            color: #00bcd4;
+            color: var(--accent-color);
         }
 
         .post-list .excerpt {
             font-size: 1rem;
-            color: #aaa;
+            color: var(--footer-color);
             margin-top: 10px;
-        }
-
-        /* Light Theme Adjustments */
-        .light-theme .post-list li {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .light-theme .post-list li:hover {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .light-theme .post-list .post-title a:hover {
-            color: #2575fc;
         }
 
         /* Footer Styles */
@@ -93,7 +101,7 @@
             margin-top: 60px;
             text-align: center;
             font-size: 0.9rem;
-            color: #888;
+            color: var(--footer-color);
         }
 
         footer p {
@@ -102,6 +110,27 @@
 
         footer span {
             color: #ff4757;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--accent-color);
+            color: white;
         }
 
         /* Responsive Design */
@@ -121,10 +150,22 @@
             .post-list .excerpt {
                 font-size: 0.9rem;
             }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <!-- Navigation Bar -->
     <nav>
         <div class="nav-container">
@@ -140,6 +181,17 @@
             <li>
                 <span class="date">[ 10-03-2025 ]</span>
                 <span class="post-title"><a href="bidah.html">Understanding Bid'ah in Islam</a></span>
+                <p class="excerpt">A deep dive into the concept of Bid'ah and its implications in Islam.</p>
+            </li>
+            <li>
+                <span class="date">[ 15-03-2025 ]</span>
+                <span class="post-title"><a href="journey_of_faith.html">Journey of Faith</a></span>
+                <p class="excerpt">Reflections on the journey of faith and the challenges faced along the way.</p>
+            </li>
+            <li>
+                <span class="date">[ 20-03-2025 ]</span>
+                <span class="post-title"><a href="meaning_of_life.html">The Meaning of Life</a></span>
+                <p class="excerpt">Exploring the purpose of life through the lens of Islamic teachings.</p>
             </li>
         </ul>
     </div>
@@ -153,6 +205,36 @@
     <!-- Auto-update year with JavaScript -->
     <script>
         document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        const themeToggle = document.getElementById("theme-toggle");
+        const body = document.body;
+        const icon = themeToggle.querySelector("i");
+
+        // Check for saved theme in localStorage
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "light") {
+            body.classList.add("light-theme");
+            icon.classList.replace("fa-moon", "fa-sun");
+        }
+
+        // Toggle Theme
+        themeToggle.addEventListener("click", () => {
+            body.classList.toggle("light-theme");
+            const isLightTheme = body.classList.contains("light-theme");
+
+            // Save theme preference to localStorage
+            localStorage.setItem("theme", isLightTheme ? "light" : "dark");
+
+            // Change icon
+            if (isLightTheme) {
+                icon.classList.replace("fa-moon", "fa-sun");
+            } else {
+                icon.classList.replace("fa-sun", "fa-moon");
+            }
+        });
     </script>
 </body>
 </html>
