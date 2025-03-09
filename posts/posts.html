@@ -64,6 +64,14 @@
             background: var(--card-bg);
             border-radius: 10px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
         }
 
         .post-list li:hover {
@@ -94,6 +102,26 @@
             font-size: 1rem;
             color: var(--footer-color);
             margin-top: 10px;
+        }
+
+        /* Author Information Styles */
+        .author-info {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info span {
+            font-size: 0.9rem;
+            color: var(--footer-color);
         }
 
         /* Tags/Categories Styles */
@@ -131,6 +159,32 @@
 
         .read-more:hover {
             background: #009fb4;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+
+        .pagination a {
+            padding: 8px 16px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background: var(--card-hover);
+        }
+
+        .pagination a.active {
+            background: var(--accent-color);
+            color: white;
         }
 
         /* Social Sharing Buttons Styles */
@@ -188,6 +242,32 @@
             color: white;
         }
 
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #009fb4;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -211,6 +291,13 @@
                 right: 10px;
                 font-size: 0.9rem;
                 padding: 8px 12px;
+            }
+
+            .back-to-top {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -237,6 +324,10 @@
                 <span class="date">[ 10-03-2025 ]</span>
                 <span class="post-title"><a href="bidah.html">Understanding Bid'ah in Islam</a></span>
                 <p class="excerpt">A deep dive into the concept of Bid'ah and its implications in Islam...</p>
+                <div class="author-info">
+                    <img src="https://via.placeholder.com/40" alt="Author">
+                    <span>By DunyaWayfarer</span>
+                </div>
                 <div class="tags">
                     <span class="tag">Aqeedah</span>
                     <span class="tag">Fiqh</span>
@@ -247,6 +338,10 @@
                 <span class="date">[ 15-03-2025 ]</span>
                 <span class="post-title"><a href="journey_of_faith.html">Journey of Faith</a></span>
                 <p class="excerpt">Reflections on the journey of faith and the challenges faced along the way...</p>
+                <div class="author-info">
+                    <img src="https://via.placeholder.com/40" alt="Author">
+                    <span>By DunyaWayfarer</span>
+                </div>
                 <div class="tags">
                     <span class="tag">Spirituality</span>
                     <span class="tag">Personal Growth</span>
@@ -257,13 +352,25 @@
                 <span class="date">[ 20-03-2025 ]</span>
                 <span class="post-title"><a href="meaning_of_life.html">The Meaning of Life</a></span>
                 <p class="excerpt">Exploring the purpose of life through the lens of Islamic teachings...</p>
+                <div class="author-info">
+                    <img src="https://via.placeholder.com/40" alt="Author">
+                    <span>By DunyaWayfarer</span>
+                </div>
                 <div class="tags">
                     <span class="tag">Philosophy</span>
                     <span class="tag">Islam</span>
                 </div>
-                <a href="meaning_of_life.html" class="read More</a>
+                <a href="meaning_of_life.html" class="read-more">Read More</a>
             </li>
         </ul>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">Next</a>
+        </div>
 
         <!-- Social Sharing Buttons -->
         <div class="social-share">
@@ -280,6 +387,11 @@
         <p>&copy; <span id="year"></span> DunyaWayfarer 🚀</p>
         <p>Made with <span>❤️</span> by The DunyaWayfarer</p>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <!-- Auto-update year with JavaScript -->
     <script>
@@ -315,5 +427,25 @@
             }
         });
     </script>
+
+    <!-- Back to Top Script -->
+    <script>
+        const backToTopButton = document.getElementById("back-to-top");
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add("show");
+            } else {
+                backToTopButton.classList.remove("show");
+            }
+        });
+
+        backToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
 </body>
-                </html>
+</html>
