@@ -15,8 +15,6 @@
             --card-hover: rgba(255, 255, 255, 0.1); /* Dark theme card hover */
             --accent-color: #00bcd4; /* Accent color */
             --footer-color: #888; /* Footer text color */
-            --nav-bg: rgba(12, 13, 34, 0.9); /* Dark theme nav background */
-            --nav-text: white; /* Dark theme nav text */
         }
 
         .light-theme {
@@ -26,8 +24,6 @@
             --card-hover: rgba(0, 0, 0, 0.1); /* Light theme card hover */
             --accent-color: #2575fc; /* Light theme accent color */
             --footer-color: #666; /* Light theme footer text color */
-            --nav-bg: rgba(240, 240, 240, 0.9); /* Light theme nav background */
-            --nav-text: #131835; /* Light theme nav text */
         }
 
         /* General Styles */
@@ -45,71 +41,6 @@
             padding: 0;
             line-height: 1.6;
             transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        /* Navigation Bar Styles */
-        nav {
-            background: var(--nav-bg);
-            backdrop-filter: blur(10px); /* Adds a blur effect */
-            padding: 10px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: flex-start; /* Align links to the left */
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 15px; /* Space between links */
-            align-items: center;
-        }
-
-        .nav-link {
-            color: var(--nav-text);
-            text-decoration: none;
-            font-size: 0.9rem; /* Smaller font size */
-            font-weight: 500;
-            padding: 6px 12px; /* Smaller padding */
-            border-radius: 5px;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background: var(--accent-color);
-            color: white;
-        }
-
-        .nav-link.active {
-            background: var(--accent-color);
-            color: white;
-        }
-
-        /* Light Mode Adjustments */
-        .light-theme nav {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light mode border */
-        }
-
-        .light-theme .nav-link {
-            color: var(--nav-text);
-        }
-
-        .light-theme .nav-link:hover {
-            background: var(--accent-color);
-            color: white;
-        }
-
-        .light-theme .nav-link.active {
-            background: var(--accent-color);
-            color: white;
         }
 
         /* Container Styles */
@@ -347,9 +278,34 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-link {
-                font-size: 0.8rem; /* Smaller font size for mobile */
-                padding: 5px 10px; /* Smaller padding for mobile */
+            h1 {
+                font-size: 2rem;
+            }
+
+            .post-list li {
+                padding: 15px;
+            }
+
+            .post-list .post-title a {
+                font-size: 1.2rem;
+            }
+
+            .post-list .excerpt {
+                font-size: 0.9rem;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            .back-to-top {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -359,16 +315,6 @@
     <button class="theme-toggle" id="theme-toggle">
         <i class="fas fa-moon"></i>
     </button>
-
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-links">
-                <a href="/" class="nav-link">Home</a>
-                <a href="posts.html" class="nav-link active">Wayfarer's Journal</a>
-            </div>
-        </div>
-    </nav>
 
     <!-- Main Content -->
     <div class="container">
