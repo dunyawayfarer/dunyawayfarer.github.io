@@ -15,6 +15,8 @@
             --card-hover: rgba(255, 255, 255, 0.1); /* Dark theme card hover */
             --accent-color: #00bcd4; /* Accent color */
             --footer-color: #888; /* Footer text color */
+            --nav-bg: rgba(12, 13, 34, 0.9); /* Dark theme nav background */
+            --nav-text: white; /* Dark theme nav text */
         }
 
         .light-theme {
@@ -24,6 +26,8 @@
             --card-hover: rgba(0, 0, 0, 0.1); /* Light theme card hover */
             --accent-color: #2575fc; /* Light theme accent color */
             --footer-color: #666; /* Light theme footer text color */
+            --nav-bg: rgba(240, 240, 240, 0.9); /* Light theme nav background */
+            --nav-text: #131835; /* Light theme nav text */
         }
 
         /* General Styles */
@@ -43,6 +47,46 @@
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
+        /* Navigation Bar Styles */
+        nav {
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px); /* Adds a blur effect */
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--nav-text);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .nav-link.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* Container Styles */
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -319,7 +363,7 @@
     <nav>
         <div class="nav-container">
             <a href="/" class="nav-link">Home</a>
-            <a href="posts.html" class="nav-link">Wayfarer's Journal</a>
+            <a href="posts.html" class="nav-link active">Wayfarer's Journal</a>
         </div>
     </nav>
 
