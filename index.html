@@ -30,6 +30,8 @@
             --secondary-gradient: linear-gradient(135deg, #430c5c, #9932cc);
             --cosmic-shadow: 0 4px 15px rgba(42, 42, 114, 0.4);
             --reflect-button-color: #6a11cb; /* New color for Reflect with Me button */
+            --nav-bg: rgba(12, 13, 34, 0.9); /* Navigation background */
+            --nav-hover: rgba(255, 255, 255, 0.1); /* Navigation hover effect */
         }
 
         .light-theme {
@@ -39,6 +41,8 @@
             --secondary-gradient: linear-gradient(135deg, #ff6b6b, #ff4757);
             --cosmic-shadow: 0 4px 15px rgba(106, 17, 203, 0.3);
             --reflect-button-color: #2575fc; /* Light theme color for Reflect with Me button */
+            --nav-bg: rgba(255, 255, 255, 0.9); /* Light theme navigation background */
+            --nav-hover: rgba(0, 0, 0, 0.1); /* Light theme navigation hover effect */
         }
 
         /* Reset Styles */
@@ -59,7 +63,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(12, 13, 34, 0.9); /* Semi-transparent background */
+            background: var(--nav-bg);
             backdrop-filter: blur(10px); /* Blur effect */
             z-index: 1000;
             padding: 10px 20px;
@@ -86,12 +90,11 @@
         }
 
         .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1); /* Hover effect */
+            background: var(--nav-hover);
             color: #00bcd4; /* Highlight color */
             transform: translateY(-2px);
         }
-
-        /* Light Theme Adjustments */
+                /* Light Theme Adjustments */
         .light-theme .nav-link {
             color: var(--text-color);
         }
