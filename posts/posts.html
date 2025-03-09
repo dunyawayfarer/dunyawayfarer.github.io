@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thoughts - DunyaWayfarer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Additional Styles for Posts Page */
+        .post-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .post-list li {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.3s ease;
+        }
+
+        .post-list li:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .post-list .date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-right: 10px;
+        }
+
+        .post-list .post-title a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .post-list .post-title a:hover {
+            color: #00bcd4;
+        }
+
+        .light-theme .post-list li {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .light-theme .post-list li:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .light-theme .post-list .post-title a:hover {
+            color: #2575fc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="nav-link">Home</a>
+            <a href="posts.html" class="nav-link">Thoughts</a> <!-- Updated link text -->
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Thoughts</h1>
+        <ul class="post-list">
+            <li>
+                <span class="date">[ 10-03-2025 ]</span>
+                <span class="post-title"><a href="posts/reflection_on_life.html">Reflection on Life</a></span>
+            </li>
+            <li>
+                <span class="date">[ 15-03-2025 ]</span>
+                <span class="post-title"><a href="posts/journey_of_faith.html">Journey of Faith</a></span>
+            </li>
+            <!-- Add more posts here -->
+            <li>
+                <span class="date">[ 20-03-2025 ]</span>
+                <span class="post-title"><a href="posts/the_meaning_of_existence.html">The Meaning of Existence</a></span>
+            </li>
+            <li>
+                <span class="date">[ 25-03-2025 ]</span>
+                <span class="post-title"><a href="posts/lessons_from_the_prophet.html">Lessons from the Prophet ﷺ</a></span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> DunyaWayfarer 🚀</p>
+        <p>Made with <span>❤️</span> by The DunyaWayfarer</p>
+    </footer>
+
+    <!-- Auto-update year with JavaScript -->
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
