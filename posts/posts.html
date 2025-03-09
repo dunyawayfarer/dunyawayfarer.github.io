@@ -56,13 +56,31 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--nav-text);
+            text-decoration: none;
+        }
+
+        .nav-brand span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
             align-items: center;
         }
 
@@ -84,6 +102,44 @@
         .nav-link.active {
             background: var(--accent-color);
             color: white;
+        }
+
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--nav-text);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: var(--nav-bg);
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
         }
 
         /* Container Styles */
@@ -318,39 +374,6 @@
         .back-to-top:hover {
             background: #009fb4;
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .post-list li {
-                padding: 15px;
-            }
-
-            .post-list .post-title a {
-                font-size: 1.2rem;
-            }
-
-            .post-list .excerpt {
-                font-size: 0.9rem;
-            }
-
-            .theme-toggle {
-                top: 10px;
-                right: 10px;
-                font-size: 0.9rem;
-                padding: 8px 12px;
-            }
-
-            .back-to-top {
-                bottom: 10px;
-                right: 10px;
-                padding: 8px 12px;
-                font-size: 1rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -362,8 +385,16 @@
     <!-- Navigation Bar -->
     <nav>
         <div class="nav-container">
-            <a href="/" class="nav-link">Home</a>
-            <a href="posts.html" class="nav-link active">Wayfarer's Journal</a>
+            <a href="/" class="nav-brand">Dunya<span>Wayfarer</span></a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="posts.html" class="nav-link active">Wayfarer's Journal</a>
+            </div>
         </div>
     </nav>
 
@@ -468,6 +499,16 @@
                 top: 0,
                 behavior: "smooth"
             });
+        });
+    </script>
+
+    <!-- Hamburger Menu Script -->
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("nav-links");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
         });
     </script>
 </body>
