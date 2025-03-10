@@ -58,6 +58,16 @@
             color: var(--text-color);
         }
 
+        h1 a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        h1 a:hover {
+            color: var(--accent-color);
+        }
+
         /* Post List Styles */
         .post-list {
             list-style: none;
@@ -311,7 +321,9 @@
 
     <!-- Main Content -->
     <div class="container">
-        <h1>Wayfarer's Journal</h1>
+        <!-- Make the h1 a link to the home page -->
+        <h1><a href="/">Wayfarer's Journal</a></h1>
+
         <ul class="post-list">
             <li>
                 <span class="date">[ 10-03-2025 ]</span>
@@ -333,7 +345,7 @@
             <a href="#" class="active">1</a>
             <a href="#">2</a>
             <a href="#">3</a>
-            <a href="/">Wayfarer's Journal</a> <!-- Updated to go back to home -->
+            <a href="#">Next</a>
         </div>
 
         <!-- Social Sharing Buttons -->
